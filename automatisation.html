@@ -1,0 +1,226 @@
+﻿<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automatisations | Guilhem Perret-Bardou</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Guilhem Perret-Bardou</a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="education.html">Éducation</a>
+        <a class="active" href="projets.html">Projets</a>
+        <a href="experience.html">Expérience</a>
+        <a href="certification.html">Certification</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="container">
+      <section class="page-hero" data-reveal>
+        <p class="eyebrow">Projet</p>
+        <h1>Automatisations IA pour gagner du temps opérationnel.</h1>
+        <p>
+          Conception de workflows intelligents combinés à des intégrations métier afin de
+          transformer des tâches manuelles répétitives en processus fiables.
+        </p>
+      </section>
+
+      <section class="stack">
+        <article class="surface-card tile" data-reveal>
+          <h1>Workflow devis / facture</h1>
+          <img src="Page%20Projets/souspage_automatisation/facturation.PNG" alt="Workflow facturation automatique" class="workflow-image">
+          <p>
+            <h2>Workflow Facturation Automatique via Telegram</h2>
+
+<p>Ce workflow permet de creer et envoyer des factures automatiquement des qu'un utilisateur envoie un message, une photo, un audio ou un PDF sur un bot Telegram.</p>
+
+<h2>Objectif</h2>
+<p>Transformer n'importe quel envoi (texte, image, vocal ou fichier) en une facture PDF professionnelle envoyee automatiquement au client.</p>
+
+<hr>
+
+<h2>Fonctionnement General</h2>
+
+<ol>
+<li>Declenchement : Un message arrive sur le bot Telegram</li>
+<li>Switch intelligent : Analyse le type de contenu et dirige vers la bonne branche</li>
+<li>Traitement selon le type (texte, image, audio, PDF)</li>
+<li>AI Agent : Analyse, extrait les informations et calcule la facture</li>
+<li>Generation du PDF</li>
+<li>Envoi de la facture au client sur Telegram</li>
+</ol>
+
+<hr>
+
+<h2>Les Branches d'Entree</h2>
+
+<h3>A. Branche Audio (Message vocal)</h3>
+<ul>
+<li>Get a audio : Recupere le fichier audio</li>
+<li>Transcribe a recording (Whisper) : Convertit la voix en texte</li>
+<li>Resultat : Envoye a l'AI Agent</li>
+</ul>
+
+<h3>B. Branche Image (Photo de ticket, facture, etc.)</h3>
+<ul>
+<li>Get a image : Recupere l'image</li>
+<li>Mise au bon format : Prepare l'image</li>
+<li>Analyze image (Vision OpenAI) : Extrait le texte et decrit l'image</li>
+<li>Resultat : Envoye a l'AI Agent</li>
+</ul>
+
+<h3>C. Branche Fichier (PDF ou autres fichiers)</h3>
+<ul>
+<li>Get a file : Recupere le fichier</li>
+<li>Envoie PDF : Envoie vers l'API OCR</li>
+<li>Reception URL : Recupere le lien du resultat</li>
+<li>Resultat OCR : Extrait tout le texte du document</li>
+<li>Resultat : Envoye a l'AI Agent</li>
+</ul>
+
+<h3>D. Branche Texte simple</h3>
+<ul>
+<li>Le texte est envoye directement a l'AI Agent</li>
+</ul>
+
+<hr>
+
+<h2>Le Coeur du Systeme : AI Agent</h2>
+
+<p>L'AI Agent est le cerveau du workflow. Il recoit toutes les informations et dispose de :</p>
+
+<ul>
+<li>Modele : OpenAI Chat Model (GPT-4o ou equivalent)</li>
+<li>Memoire : Simple Memory (contexte des conversations precedentes)</li>
+<li>Outils integres :
+  <ul>
+    <li>Calculator : Pour tous les calculs (TVA, totaux, remises...)</li>
+    <li>Informations de facturation : Lit une feuille (Google Sheet) contenant clients, tarifs, etc.</li>
+  </ul>
+</li>
+</ul>
+
+<p>Role de l'Agent :</p>
+<ul>
+<li>Comprendre la demande</li>
+<li>Extraire les produits/services</li>
+<li>Identifier le client</li>
+<li>Calculer les montants</li>
+<li>Structurer les donnees en JSON</li>
+</ul>
+
+<hr>
+
+<h2>Sortie et Generation de la Facture</h2>
+
+<ol>
+<li>Transformation en objet JSON : Donnees propres et structurees</li>
+<li>Create a pdf : Genere le PDF de facture</li>
+<li>Basic LLM Chain : (Optionnel) Reformule un message d'accompagnement</li>
+<li>Send a text message : Envoie le PDF + message sur Telegram</li>
+</ol>
+          </p>
+        </article>
+
+        <article class="surface-card tile" data-reveal>
+          <h1>Workflow recherche de stage</h1>
+          <img src="Page%20Projets/souspage_automatisation/recherche_emploi.PNG" alt="Workflow recherche de stage automatisee" class="workflow-image">
+          <p>
+            <h2>Workflow Automatisé : Recherche et Candidature aux Stages</h2>
+
+<p>Ce workflow automatise la recherche d'offres de stage, la génération de lettres de motivation personnalisées et l'enregistrement des candidatures dans un Google Sheet.</p>
+
+<h2>Description générale</h2>
+
+<p>Le processus se déclenche automatiquement selon un planning (ou manuellement) et suit les étapes suivantes :</p>
+
+<h3>1. Déclenchement</h3>
+<ul>
+<li><strong>Schedule Trigger</strong> : Le workflow se lance automatiquement à intervalles réguliers (ex. : tous les jours).</li>
+<li><strong>Search URL (manuel)</strong> : Possibilité de lancer le workflow manuellement en fournissant une URL de recherche d'offres (pour linkedin).</li>
+</ul>
+
+<h3>2. Récupération des offres de stage</h3>
+<ul>
+<li><strong>Scrap Internship</strong> : Scrape les offres de stage depuis l'url de recherche LinkedIn.</li>
+<li><strong>Scrap Internship1</strong> : Second scraper (Indeed) pour récupérer davantage d’offres.</li>
+</ul>
+
+<h3>3. Fusion des données</h3>
+<ul>
+<li><strong>Merge</strong> : Combine les résultats des deux scrapers en une seule liste d’offres (supprime les doublons si besoin).</li>
+</ul>
+
+<h3>4. Analyse et filtrage avec l’IA</h3>
+<ul>
+<li><strong>Verdict (Réponse Text)</strong> : L’IA (type GPT) analyse chaque offre et donne un <strong>verdict</strong> boléen :
+  <ul>
+    <li>True = Bonne offre</li>
+    <li>False = pas d'interet </li>
+    <li>basé sur mes critères de selection</li>
+  </ul>
+</li>
+<li><strong>Filter</strong> : Ne conserve que les offres qui correspondent à mes critères (Réponse de gpt = True).</li>
+</ul>
+
+<h3>5. Génération de la candidature</h3>
+<ul>
+<li><strong>Custom Cover Letter (Réponse Text)</strong> : L’IA génère une <strong>lettre de motivation personnalisée</strong> pour chaque offre retenue, adaptée au poste et à l’entreprise.</li>
+</ul>
+
+<h3>6. Création des documents</h3>
+<ul>
+<li><strong>Create a Document</strong> : Crée un document Google Docs avec la lettre de motivation générée.</li>
+<li><strong>Add Letter txt</strong> : Ajoute le texte de la lettre dans une colonne du Google Sheet (pour archivage rapide).</li>
+</ul>
+
+<h3>7. Enregistrement final</h3>
+<ul>
+<li><strong>Append row in sheet</strong> : Ajoute une ligne dans le Google Sheet avec toutes les informations :
+  <ul>
+    <li>Lien de l’offre</li>
+    <li>Nom de l’entreprise</li>
+    <li>Poste</li>
+    <li>nombre de candidats</li>
+    <li>Lien vers la lettre de motivation</li>
+    <li>Date de candidature d'apparition.</li>
+    <li>etc...</li>
+  </ul>
+</li>
+</ul>
+
+<h2>Objectif du workflow</h2>
+
+<p>Automatiser ma recherche de stage en :</p>
+<ul>
+<li>Gagnant un temps considérable</li>
+<li>Personnalisant tes candidatures grâce à l’IA</li>
+<li>Gardant une traçabilité complète de toutes tes candidatures</li>
+</ul>
+
+<hr>
+          </p>
+        </article>
+      </section>
+
+      <div class="cta-row" data-reveal>
+        <a class="btn btn-outline" href="projets.html">Retour aux projets</a>
+        <a class="btn btn-primary" href="contact.html">Discuter du projet</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Portfolio de Guilhem Perret-Bardou | Automatisations IA</p>
+    </div>
+  </footer>
+</body>
+</html>
