@@ -10,7 +10,13 @@
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">Guilhem Perret-Bardou</a>
-      <nav class="main-nav" aria-label="Navigation principale">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <span class="menu-toggle-bar"></span>
+        <span class="menu-toggle-bar"></span>
+        <span class="menu-toggle-bar"></span>
+        <span class="sr-only">Ouvrir le menu</span>
+      </button>
+      <nav id="site-menu" class="main-nav" aria-label="Navigation principale">
         <a href="index.html">Accueil</a>
         <a class="active" href="education.html">Éducation</a>
         <a href="projets.html">Projets</a>
@@ -74,5 +80,6 @@
       <p>Portfolio de Guilhem Perret-Bardou | Éducation</p>
     </div>
   </footer>
+  <script src="script.js"></script>
 </body>
 </html>
