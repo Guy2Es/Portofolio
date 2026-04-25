@@ -97,33 +97,6 @@ p {
   padding: 0.88rem 0;
 }
 
-.menu-toggle {
-  display: none;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface-strong);
-  align-items: center;
-  justify-content: center;
-  gap: 0.22rem;
-  cursor: pointer;
-  padding: 0.55rem;
-  flex-direction: column;
-}
-
-.menu-toggle-bar {
-  width: 18px;
-  height: 2px;
-  border-radius: 999px;
-  background: var(--text);
-}
-
-.menu-toggle:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-}
-
 .sr-only {
   position: absolute;
   width: 1px;
@@ -143,6 +116,41 @@ p {
   font-weight: 700;
   letter-spacing: 0.03em;
   white-space: nowrap;
+}
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text);
+  box-shadow: var(--shadow-1);
+  cursor: pointer;
+}
+
+.menu-toggle:hover {
+  border-color: rgba(7, 105, 212, 0.28);
+  box-shadow: var(--shadow-2);
+}
+
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.menu-toggle-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
 }
 
 .main-nav {
@@ -456,6 +464,26 @@ p {
   object-fit: cover;
 }
 
+.edu-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.edu-title span {
+  display: inline-block;
+}
+
+.edu-flag {
+  width: 28px;
+  height: 20px;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
 .small-img {
   object-fit: contain;
   padding: 0.45rem;
@@ -545,93 +573,6 @@ p {
   font-size: 0.9rem;
 }
 
-.notice-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.3rem 1.35rem;
-}
-
-.notice-banner p,
-.project-meta p,
-.pdf-note,
-.pdf-status,
-.pdf-error {
-  color: var(--muted);
-}
-
-.project-layout {
-  display: grid;
-  grid-template-columns: 0.95fr 1.25fr;
-  gap: 1rem;
-  align-items: start;
-}
-
-.project-card,
-.pdf-shell {
-  padding: 1.2rem;
-}
-
-.project-meta {
-  margin-bottom: 1rem;
-}
-
-.pdf-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  margin: 1rem 0;
-}
-
-.pdf-note {
-  padding: 0.9rem 1rem;
-  border-radius: 16px;
-  background: rgba(7, 105, 212, 0.08);
-  border: 1px solid rgba(7, 105, 212, 0.14);
-}
-
-.pdf-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: start;
-  margin-bottom: 1rem;
-}
-
-.pdf-status {
-  margin: 0;
-  font-size: 0.92rem;
-}
-
-.pdf-viewer {
-  display: grid;
-  gap: 1rem;
-  max-height: 78vh;
-  overflow: auto;
-  padding: 1rem;
-  border-radius: 20px;
-  border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(246, 249, 253, 0.95), rgba(236, 241, 247, 0.95));
-}
-
-.pdf-page {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 10px 24px rgba(15, 35, 60, 0.12);
-}
-
-.pdf-error {
-  margin: 0;
-  padding: 1rem;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid var(--line);
-}
-
 [data-reveal],
 [data-reveal].is-visible {
   opacity: 1;
@@ -641,8 +582,7 @@ p {
 @media (max-width: 1040px) {
   .hero-layout,
   .cards-grid,
-  .split-grid,
-  .project-layout {
+  .split-grid {
     grid-template-columns: 1fr;
   }
 
@@ -652,34 +592,49 @@ p {
 }
 
 @media (max-width: 800px) {
-  .nav-wrap {
+  .js .nav-wrap {
     flex-wrap: wrap;
+    align-items: flex-start;
   }
 
-  .menu-toggle {
+  .js .menu-toggle {
     display: inline-flex;
-    margin-left: auto;
   }
 
-  .main-nav {
+  .js .main-nav {
     display: none;
     width: 100%;
+    order: 3;
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
     gap: 0.35rem;
-    padding-top: 0.55rem;
+    margin-top: 0.8rem;
+    padding: 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: var(--shadow-1);
   }
 
-  .main-nav.is-open {
+  .js .main-nav.is-open {
     display: flex;
   }
 
+  .main-nav {
+    gap: 0.25rem;
+  }
+
   .main-nav a {
-    display: block;
-    font-size: 0.88rem;
-    padding: 0.62rem 0.75rem;
-    border-radius: 12px;
+    font-size: 0.92rem;
+    padding: 0.72rem 0.85rem;
+    border: 1px solid transparent;
+    background: rgba(7, 105, 212, 0.04);
+  }
+
+  .main-nav a:hover,
+  .main-nav a.active {
+    border-color: rgba(7, 105, 212, 0.16);
   }
 
   .entry,
@@ -693,16 +648,6 @@ p {
 
   .hero-scroll-stage {
     top: 5.7rem;
-  }
-
-  .pdf-head,
-  .notice-banner {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .pdf-viewer {
-    max-height: 68vh;
   }
 }
 

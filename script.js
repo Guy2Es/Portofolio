@@ -1,3 +1,6 @@
+
+document.documentElement.classList.add("js");
+
 document.addEventListener("DOMContentLoaded", () => {
 	const navWraps = document.querySelectorAll(".nav-wrap");
 
